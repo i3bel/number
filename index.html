@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>鹬蚌相争 · 渔翁得利</title>
+
+<!-- iPhone Safari 全屏适配 -->
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- 样式 -->
+<link rel="stylesheet" href="css/style.css">
+
+<!-- PWA manifest -->
+<link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+<!-- 壁纸 -->
+<div id="wallpaper"></div>
+
+<!-- 顶部状态栏 -->
+<div id="statusBar">
+  <div>时计: <span id="timer">0</span></div>
+  <div>数筹: <span id="count">4</span></div>
+</div>
+
+<!-- 控件按钮 -->
+<div id="controls">
+  <label class="control-btn" title="选择壁纸">
+    📷<input type="file" id="wallpaperInput" accept="image/png,image/jpeg" hidden>
+  </label>
+  <div class="control-btn" id="resetWallpaper" title="重置背景">↺</div>
+</div>
+
+<!-- 上方缓冲 0.2 屏 -->
+<div id="topSpace"></div>
+
+<!-- 游戏区域（固定可视区域） -->
+<div id="gameArea"></div>
+
+<!-- 下方缓冲 0.2 屏 -->
+<div id="bottomSpace"></div>
+
+<!-- Overlay -->
+<div id="overlay">
+  <h1 style="color:#e40900">猿心辨数试仙才</h1>
+  <p style="color:#e40900">阙启游・柬显数</p>
+</div>
+
+<!-- 游戏逻辑 -->
+<script src="js/game.js"></script>
+
+<!-- 注册 Service Worker -->
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js')
+    .then(() => console.log('Service Worker registered'));
+}
+
+// 禁止页面滚动
+document.addEventListener('touchmove', e => { e.preventDefault(); }, { passive: false });
+</script>
+</body>
+</html>
