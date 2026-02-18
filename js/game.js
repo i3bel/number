@@ -61,7 +61,7 @@ function startTimer(){
     timerInterval = setInterval(()=>{
         const elapsed = (Date.now() - startTime) / 1000;
 
-        if(elapsed >= 10){
+        if(elapsed >= 100){
             stopTimer();
             timerEl.textContent = "在?";
             return;
